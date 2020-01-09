@@ -79,3 +79,4 @@ To terminate:
 Exit ubuntu
 
 Actions > Instance State > Stop > wait to stop then Terminate
+.
