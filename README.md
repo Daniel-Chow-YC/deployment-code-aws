@@ -40,7 +40,8 @@ ssh -o StrictHostKeyChecking='no' ubuntu@34.253.192.79 <<EOF
     cd ..
     cd app
     npm install
-    npm start
+    npm start &
+    exit
 
 
 EOF  
