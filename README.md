@@ -1,4 +1,3 @@
-dev
 # Connect to Your Linux Instance using an SSH Client
 - ``ssh -i /path/my-key-pair.pem ec2-user@ec2-198-51-100-1.compute-1.amazonaws.com``
 - (``ssh -i /path/my-key-pair.pem user@ip_address`` )
@@ -16,6 +15,7 @@ dev
 ## How to run.sh files
 `` ./file_name.sh ``
 
+--- Dev branch
 
 ## AWS
 EC2
