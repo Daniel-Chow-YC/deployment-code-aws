@@ -21,6 +21,7 @@ sudo npm install pm2 -g
 sudo apt-get install nginx -y
 
 sudo apt-get npm install
+sudo npm install -g express-generator
 sudo npm install ejs mongoose express
 
 # remove the old file and add our one
