@@ -9,6 +9,43 @@
 - To copy an entire directory, add the -r recursive option:
 ``scp -i path/to/key -r directory/to/copy user@ip_address:path/to/directory``
 
+# Deployment
+- Use SSH Agent plugin
+  - Add credentials - SSH username with private key
+  - Add the .pem private key created in AWS
+- Execute shell
+  - In shell script add something like:
+````
+scp -o StrictHostKeyChecking='no' -r app ubuntu@34.253.192.79:/home/ubuntu/
+scp -o StrictHostKeyChecking='no' -r environment ubuntu@34.253.192.79:/home/ubuntu/
+
+ssh -o StrictHostKeyChecking='no' ubuntu@34.253.192.79 <<EOF
+	echo 'Run bash files (make sure you can actually run)'
+
+    echo 'Go to the right directory'
+    echo 'install dependencies'
+    echo 'Start our app'
+
+    cd environment/
+    cd app
+    chmod +x provision.sh
+    ./provision.sh
+
+    cd ..
+    cd db
+    chmod +x provision.sh
+    ./provision.sh
+
+    cd ..
+    cd ..
+    cd app
+    npm install
+    npm start
+
+
+EOF  
+````
+
 ## Changing permission to execute file
 `` chmod +x <file_name> ``
 

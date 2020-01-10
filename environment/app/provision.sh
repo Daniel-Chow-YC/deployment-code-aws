@@ -20,7 +20,7 @@ sudo npm install pm2 -g
 
 sudo apt-get install nginx -y
 
-sudo apt-get npm install
+sudo apt install npm -y
 sudo npm install -g express-generator
 sudo npm install ejs mongoose express
 
