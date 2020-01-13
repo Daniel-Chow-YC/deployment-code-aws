@@ -47,8 +47,12 @@ ssh -o StrictHostKeyChecking='no' ubuntu@34.253.192.79 <<EOF
 EOF  
 ````
 
+## Note: Ports Open for apt get updates
+Port range: 1024 - 65535
+
 ## Changing permission to execute file
 `` chmod +x <file_name> ``
+`` chmod 700 <file_name> ``
 
 ## Error -- /bin/bash^M: bad interpreter: No such file or directory
 - Cause of error: Your file has DOS/Windows style line endings (CR LF), but on Unix-like systems only the LF control character is used as line break.
