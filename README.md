@@ -50,10 +50,22 @@ EOF
 ## Changing permission to execute file
 `` chmod +x <file_name> ``
 
+## Error -- /bin/bash^M: bad interpreter: No such file or directory
+- Cause of error: Your file has DOS/Windows style line endings (CR LF), but on Unix-like systems only the LF control character is used as line break.
+  - The script (file) indicates that it must be executed by a shell located at /bin/bash^M. There is no such file: it's called /bin/bash.
+- To convert the line endings from DOS/Windows style to Unix style, there's a tool called dos2unix. You install it using:
+`` sudo apt-get install dos2unix ``
+- Then you can simply convert files' line endings in both ways using:
+````
+dos2unix <FILENAME>
+unix2dos <FILENAME>
+````
+- In this case use dos2unix
+
 ## How to run.sh files
 `` ./file_name.sh ``
 
---- Dev branch Test 3
+--- Dev branch Test 4
 
 ## AWS
 EC2
