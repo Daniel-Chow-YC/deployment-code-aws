@@ -1,4 +1,3 @@
-
 # Connect to Your Linux Instance using an SSH Client
 - ``ssh -i /path/my-key-pair.pem ec2-user@ec2-198-51-100-1.compute-1.amazonaws.com``
 - (``ssh -i /path/my-key-pair.pem user@ip_address`` )
@@ -10,9 +9,67 @@
 - To copy an entire directory, add the -r recursive option:
 ``scp -i path/to/key -r directory/to/copy user@ip_address:path/to/directory``
 
+# Deployment
+- Use SSH Agent plugin
+  - Add credentials - SSH username with private key
+  - Add the .pem private key created in AWS
+- Execute shell
+  - In shell script add something like:
+````
+scp -o StrictHostKeyChecking='no' -r app ubuntu@34.253.192.79:/home/ubuntu/
+scp -o StrictHostKeyChecking='no' -r environment ubuntu@34.253.192.79:/home/ubuntu/
+
+ssh -o StrictHostKeyChecking='no' ubuntu@34.253.192.79 <<EOF
+	echo 'Run bash files (make sure you can actually run)'
+
+    echo 'Go to the right directory'
+    echo 'install dependencies'
+    echo 'Start our app'
+
+    cd environment/
+    cd app
+    chmod +x provision.sh
+    ./provision.sh
+
+    cd ..
+    cd db
+    chmod +x provision.sh
+    ./provision.sh
+
+    cd ..
+    cd ..
+    cd app
+    npm install
+    npm start &
+    exit
+
+
+EOF  
+````
+
+## Note: Ports Open for apt get updates
+Port range: 1024 - 65535
+
 ## Changing permission to execute file
 `` chmod +x <file_name> ``
+`` chmod 700 <file_name> ``
 
+## Error -- /bin/bash^M: bad interpreter: No such file or directory
+- Cause of error: Your file has DOS/Windows style line endings (CR LF), but on Unix-like systems only the LF control character is used as line break.
+  - The script (file) indicates that it must be executed by a shell located at /bin/bash^M. There is no such file: it's called /bin/bash.
+- To convert the line endings from DOS/Windows style to Unix style, there's a tool called dos2unix. You install it using:
+`` sudo apt-get install dos2unix ``
+- Then you can simply convert files' line endings in both ways using:
+````
+dos2unix <FILENAME>
+unix2dos <FILENAME>
+````
+- In this case use dos2unix
+
+## How to run.sh files
+`` ./file_name.sh ``
+
+--- Dev branch Test 8
 
 ## AWS
 EC2
