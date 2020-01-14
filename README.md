@@ -47,8 +47,9 @@ ssh -o StrictHostKeyChecking='no' ubuntu@34.253.192.79 <<EOF
 EOF  
 ````
 
-## Note: Ports Open for apt get updates
+## TCP-high port range
 Port range: 1024 - 65535
+- (See More_notes for more)
 
 ## Changing permission to execute file
 `` chmod +x <file_name> ``
